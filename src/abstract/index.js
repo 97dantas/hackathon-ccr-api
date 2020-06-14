@@ -125,6 +125,10 @@ exports.aggregate = async (collection, query) => {
     }
 }
 
+function randomNumber(min, max) {
+    return parseInt(min + (max - min) * Math.random())
+}
+
 exports.findPlate = async(data) => {
     try {
       const response = await axios.get('https://app.qualp.com.br/roteirizador',
@@ -134,52 +138,7 @@ exports.findPlate = async(data) => {
         }
       });
 
-      response.data.lugares = [{
-        "id": "172",
-        "score": 200,
-        "nome": "Posto Fase Quatro",
-        "latitude": "-23.503036",
-        "longitude": "-46.753259",
-        "sentido": "norte",
-        "km": "14",
-        "servicos": "abastecimento. Funcionamento 24 horas.",
-        "distFromStart": 12052.517483838956
-        },
-        {
-        "id": "156",
-        "score": 240,
-        "nome": "Auto Posto Britânia",
-        "latitude": "-23.436382",
-        "longitude": "-46.785588",
-        "sentido": "sul",
-        "km": "24",
-        "servicos": "abastecimento. Funcionamento 24 horas",
-        "distFromStart": 19389.904371681267
-        },
-        {
-        "id": "173",
-        "score": 300,
-        "nome": "Auto Posto Papai Noel",
-        "latitude": "-23.4364066",
-        "longitude": "-46.7857216",
-        "sentido": "norte",
-        "km": "23",
-        "servicos": "abastecimento, conveniência, borracharia. Conveniência aberta das 06:00 às 22:00, possuim estacionamento, borracharia aberta das 08:00 às 18:00.",
-        "distFromStart": 19397.304742437405
-        },
-        {
-        "id": "189",
-        "score": 400,
-        "nome": "Posto Campeão",
-        "latitude": "-23.39513",
-        "longitude": "-46.767717",
-        "sentido": "norte",
-        "km": "28",
-        "servicos": "abastecimento, restaurante, borracharia. Funcionamento das 06:00 às 22:00, borracharia aberta 24 horas, possui estacionamento.",
-        "distFromStart": 21924.8347983009
-        }]
-
-
+      response.data.lugares = response.postosCCR.map(item => ({ ...item, score: randomNumber(150, 350) }))
 
       console.log(response.data);
       return (response.data)
