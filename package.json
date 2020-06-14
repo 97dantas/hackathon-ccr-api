@@ -1,0 +1,27 @@
+{
+  "name": "hackathon-ccr-api",
+  "version": "1.0.0",
+  "description": "api for crr hackthon",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "boom": "^7.3.0",
+    "fastify": "^2.14.1",
+    "mongodb": "^3.5.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rael97/hackathon-ccr-api.git"
+  },
+  "author": "Diego Bispo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rael97/hackathon-ccr-api/issues"
+  },
+  "homepage": "https://github.com/rael97/hackathon-ccr-api#readme"
+}
