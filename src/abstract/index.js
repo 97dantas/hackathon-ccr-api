@@ -137,10 +137,10 @@ exports.findPlate = async(data) => {
             json: {"login_cod":null,"waypoints": data.waypoints,"config_rota":{"volta":false,"costing":"truck","directions_options":{"units":"km","language":"pt-BR","directions_type":"maneuvers","narrative":true}},"config_veiculo":{"categoria":"truck","eixos":6},"config_pedagio":{"prices_from_date":""}}
         }
       });
-
-      response.data.lugares = response.postosCCR.map(item => ({ ...item, score: randomNumber(150, 350) }))
-
       console.log(response.data);
+
+      response.data.lugares = response.data.postosCCR.map(item => ({ ...item, score: randomNumber(150, 350) }))
+
       return (response.data)
     } catch (error) {
       console.error(error);
