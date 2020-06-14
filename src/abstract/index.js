@@ -125,39 +125,18 @@ exports.aggregate = async (collection, query) => {
     }
 }
 
-exports.findPlate = async (data) => {
-
-    const token = "03AGdBq26PUj_fXFNvmzl88CfBBcexrH3W4C0HC94Pjgr0pJ2ja1wcd1NYjbBAUor90974gZYzA3Mg23TqvkJYFdSqHRb-FYAlPDXmfOr3hdkqHqz-GyUoTI8PQkT3OUqGtSFRWXAImWiJJvLoA_DtTyeJ80X4Mru-gi6y1VrSLFHXebrHIAatw9e4a1NMXcZnRJbUUy5bHp_q8Tc_oScRgUxROrc0OWll7NXMeCa0E6Da9eSZMjgDByZkTiZ6h429jtOt7FUz3mDHxsFwg0XJUjqSiQgf1QivPk-2ZUegAty5ZWvfEc6kVpNJmEvYVW3faGaU4uIW85mdEyqhLDfBGAsGBwZfVRNKSzM6QTR2ZYPOy8TDC7FZu1FfaFWGRpEsaKOds2O_hxEOZi4lNuaIAAvi5pCGHSMXFvXSDfxI5wOa14JccLlOUiu4tIhK9kNvmmnx4gFXAzabg_VGTGy0-mfirg7qU2jBpA"
-        try {
-
-            console.log('primeira request')
-          const search = await axios({
-              method: 'post',
-              url: 'https://api.helpay.com.br/v1/vehicle/search',
-              data: {
-                  plate: 'AIS1332'
-                },
-              headers: {
-                'Authorization': `Bearer ${token}`
-                }
-            });
-           
-            console.log ('resultado')
-            console.log (search)
-
-          const veicleID = search['data']['id']
-
-          const result = await axios.get(`https://api.helpay.com.br/v1/checkout/${veicleID}/vehicle/debts`,{
-              headers: {
-                  'Authorization': `Bearer ${token}`
-                }
-            }
-          )
-
-          console.log('solicitacao das apis')
-          console.log(result);
-          return { result }
-        } catch (err) {
-            throw new Error(`Error in request: ${err}`)
+exports.findPlate = async(data) => {
+    try {
+      const response = await axios.get('https://app.qualp.com.br/roteirizador',
+      {
+        params: {
+            json: {"login_cod":null,"waypoints": data.waypoints,"config_rota":{"volta":false,"costing":"truck","directions_options":{"units":"km","language":"pt-BR","directions_type":"maneuvers","narrative":true}},"config_veiculo":{"categoria":"truck","eixos":6},"config_pedagio":{"prices_from_date":""}}
         }
-}
+      });
+      console.log(response.data);
+      return (response.data)
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
