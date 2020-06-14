@@ -139,7 +139,7 @@ exports.findPlate = async(data) => {
       });
       console.log(response.data);
 
-      response.data.lugares = response.data.postosCCR.map(item => ({ ...item, score: randomNumber(150, 350) }))
+      response.data.lugares = response.data.postosCCR.map(item => ({ ...item, score: randomNumber(150, 350) })).slice(-1,-3,-5,-8,-2)
 
       return (response.data)
     } catch (error) {
