@@ -4,7 +4,7 @@
   "description": "api for crr hackthon",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "boom": "^7.3.0",
     "fastify": "^2.14.1",
     "mongodb": "^3.5.9"
